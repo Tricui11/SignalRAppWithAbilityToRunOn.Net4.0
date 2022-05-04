@@ -45,6 +45,14 @@
         </div>
     </form>
 
+    <h4>Connected guests</h4>
+    <form class="form-inline">
+        <div class="input-append">
+            <select name="users" id="users"></select>
+            <input type="button" id="disconnectBtn" class="btn" value="Disconnect" />
+        </div>
+    </form>
+
     <button id="stopStart" class="btn btn-info btn-small" disabled="disabled"><i class="icon-stop icon-white"></i> <span>Stop Connection</span></button>
 
     <h4>Messages</h4>
@@ -65,6 +73,13 @@
                 $("<li/>").html(window.JSON.stringify(data)).appendTo($("#messages"));
                 if (data.type == 2) {
                     $.cookie('user', data.data);
+                }
+                if (data.type == 4) {
+                    var option = document.createElement("option");
+                    option.value = data.value;
+                    option.text = data.value;
+                    users.add(option);
+                    disconnectBtn.disabled = false;
                 }
             });
 
@@ -129,7 +144,8 @@
                                .end()
                            .find("i")
                                .removeClass("icon-play")
-                               .addClass("icon-stop");
+                            .addClass("icon-stop");
+                        connection.send({ type: 4, value: "admin" });
                     });
             };
             start();
@@ -164,6 +180,10 @@
 
             $("#groupmsg").click(function () {
                 connection.send({ type: 6, value: $("#user").val() + "|" + $("#message").val() });
+            });
+
+            $("#disconnectBtn").click(function () {
+                connection.send({ type: 8, value: $("#users option:selected").text() });
             });
 
             $("#stopStart").click(function () {

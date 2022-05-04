@@ -18,8 +18,7 @@ namespace Microsoft.AspNet.SignalR.Samples
         protected override Task OnConnected(IRequest request, string connectionId)
         {
             Cookie userNameCookie;
-            if (request.Cookies.TryGetValue("user", out userNameCookie) &&
-                userNameCookie != null)
+            if (request.Cookies.TryGetValue("user", out userNameCookie) && userNameCookie != null)
             {
                 _clients[connectionId] = userNameCookie.Value;
                 _users[userNameCookie.Value] = connectionId;
@@ -103,6 +102,10 @@ namespace Microsoft.AspNet.SignalR.Samples
                     break;
                 case MessageType.AddToGroup:
                     Groups.Add(connectionId, message.Value);
+                    if (message.Value == "guest")
+                    {
+                        Groups.Send("admin", new { type = 4, value = connectionId });
+                    }
                     break;
                 case MessageType.RemoveFromGroup:
                     Groups.Remove(connectionId, message.Value);
@@ -112,6 +115,12 @@ namespace Microsoft.AspNet.SignalR.Samples
                     string groupName = parts2[0];
                     string val = parts2[1];
                     Groups.Send(groupName, val);
+                    break;
+                case MessageType.DisconnectUser:
+                    Connection.Send(message.Value, new
+                    {
+                        type = MessageType.DisconnectUser.ToString()
+                    });
                     break;
                 default:
                     break;

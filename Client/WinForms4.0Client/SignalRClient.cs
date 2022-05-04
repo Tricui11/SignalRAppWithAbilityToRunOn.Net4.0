@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNet.SignalR.Client.Models;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -42,7 +44,6 @@ namespace SignalRClient
                 //    });
                 //});
 
-      //          await connection.InvokeAsync("AddToGuestGroup", txtBoxUser.Text);
                 PersistentConnection.Send(new { type = 4, value = "guest" }).Wait();
                 listBoxChat.Items.Add("Connection started");
                 loggedIn = true;
@@ -56,9 +57,13 @@ namespace SignalRClient
             }            
         }
 
-        private void ReceivedMessage(string str)
+        private void ReceivedMessage(string data)
         {
-            Debug.WriteLine("str = " + str);
+            var message = JsonConvert.DeserializeObject<MessageDTO>(data);
+            if (message.Type == MessageType.DisconnectUser)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnSendMessage_Click(object sender, EventArgs e)
@@ -66,6 +71,7 @@ namespace SignalRClient
             try
             {
                 PersistentConnection.Send(new { type = 1, value = txtBoxMessage.Text }).Wait();
+                listBoxChat.Items.Add(txtBoxMessage.Text);
                 txtBoxMessage.Text = string.Empty;
             }
             catch (Exception ex)

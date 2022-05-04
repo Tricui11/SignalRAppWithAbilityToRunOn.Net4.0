@@ -1,4 +1,4 @@
-﻿namespace Microsoft.AspNet.SignalR.Samples.Raw
+﻿namespace Microsoft.AspNet.SignalR.Client.Models
 {
     public enum MessageType
     {
