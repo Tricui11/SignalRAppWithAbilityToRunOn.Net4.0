@@ -49,7 +49,7 @@
     <form class="form-inline">
         <div class="input-append">
             <select name="users" id="users"></select>
-            <input type="button" id="disconnectBtn" class="btn" value="Disconnect" />
+            <input type="button" id="disconnectBtn" class="btn" value="Disconnect"  disabled="disabled"/>
         </div>
     </form>
 
@@ -68,6 +68,7 @@
 
             var connection = $.connection("../raw-connection");
             connection.logging = true;
+            var disconnectBtn = document.getElementById("disconnectBtn");
 
             connection.received(function (data) {
                 $("<li/>").html(window.JSON.stringify(data)).appendTo($("#messages"));
@@ -183,7 +184,13 @@
             });
 
             $("#disconnectBtn").click(function () {
-                connection.send({ type: 8, value: $("#users option:selected").text() });
+                var selOption = $("#users option:selected");
+                connection.send({ type: 8, value: selOption.text() });
+                var users = document.getElementById("users");
+                users.remove(users.selectedIndex);
+                if (users.options.length == 0) {
+                    disconnectBtn.disabled = true;
+                }
             });
 
             $("#stopStart").click(function () {

@@ -2,7 +2,6 @@
 using Microsoft.AspNet.SignalR.Client.Models;
 using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
