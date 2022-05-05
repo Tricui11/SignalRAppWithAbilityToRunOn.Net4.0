@@ -3,6 +3,6 @@
     public class MessageDTO
     {
         public MessageType Type { get; set; }
-        public string Value { get; set; }
+        public string Data { get; set; }
     }
 }

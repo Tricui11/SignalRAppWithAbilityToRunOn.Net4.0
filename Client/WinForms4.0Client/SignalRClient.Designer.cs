@@ -41,84 +41,84 @@ namespace SignalRClient
             // 
             // lblUser
             // 
-            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUser.Location = new System.Drawing.Point(58, 81);
+            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.lblUser.Location = new System.Drawing.Point(50, 70);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(95, 38);
+            this.lblUser.Size = new System.Drawing.Size(81, 33);
             this.lblUser.TabIndex = 1;
             this.lblUser.Text = "User";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtBoxUser
             // 
-            this.txtBoxUser.Location = new System.Drawing.Point(178, 81);
+            this.txtBoxUser.Location = new System.Drawing.Point(153, 70);
             this.txtBoxUser.Multiline = true;
             this.txtBoxUser.Name = "txtBoxUser";
-            this.txtBoxUser.Size = new System.Drawing.Size(396, 38);
+            this.txtBoxUser.Size = new System.Drawing.Size(340, 33);
             this.txtBoxUser.TabIndex = 5;
             this.txtBoxUser.TextChanged += txtBoxUser_TextChanged;
             // 
             // listBoxChat
             // 
+            this.listBoxChat.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.listBoxChat.FormattingEnabled = true;
             this.listBoxChat.ItemHeight = 15;
-            this.listBoxChat.Location = new System.Drawing.Point(178, 227);
+            this.listBoxChat.Location = new System.Drawing.Point(153, 197);
             this.listBoxChat.Name = "listBoxChat";
-            this.listBoxChat.Size = new System.Drawing.Size(396, 184);
-            this.listBoxChat.DrawMode = DrawMode.OwnerDrawVariable;
-            this.listBoxChat.DrawItem += new DrawItemEventHandler(listBoxChat_DrawItem);
+            this.listBoxChat.Size = new System.Drawing.Size(340, 160);
             this.listBoxChat.TabIndex = 6;
+            this.listBoxChat.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBoxChat_DrawItem);
             // 
             // btnConnect
             // 
-            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnConnect.Enabled = false;
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnConnect.ForeColor = System.Drawing.Color.Red;
-            this.btnConnect.Location = new System.Drawing.Point(622, 81);
+            this.btnConnect.Location = new System.Drawing.Point(533, 70);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(146, 38);
+            this.btnConnect.Size = new System.Drawing.Size(125, 33);
             this.btnConnect.TabIndex = 7;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Enabled = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnSendMessage
             // 
-            this.btnSendMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSendMessage.Enabled = false;
+            this.btnSendMessage.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnSendMessage.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnSendMessage.Location = new System.Drawing.Point(622, 162);
+            this.btnSendMessage.Location = new System.Drawing.Point(533, 140);
             this.btnSendMessage.Name = "btnSendMessage";
-            this.btnSendMessage.Size = new System.Drawing.Size(146, 39);
+            this.btnSendMessage.Size = new System.Drawing.Size(125, 34);
             this.btnSendMessage.TabIndex = 8;
             this.btnSendMessage.Text = "SendMessage";
             this.btnSendMessage.UseVisualStyleBackColor = true;
-            this.btnSendMessage.Enabled = false;
             this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
             // 
             // lblMessage
             // 
-            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMessage.Location = new System.Drawing.Point(58, 163);
+            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.lblMessage.Location = new System.Drawing.Point(35, 139);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(95, 38);
+            this.lblMessage.Size = new System.Drawing.Size(96, 33);
             this.lblMessage.TabIndex = 9;
             this.lblMessage.Text = "Message";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtBoxMessage
             // 
-            this.txtBoxMessage.Location = new System.Drawing.Point(178, 162);
+            this.txtBoxMessage.Location = new System.Drawing.Point(153, 140);
             this.txtBoxMessage.Multiline = true;
             this.txtBoxMessage.Name = "txtBoxMessage";
-            this.txtBoxMessage.Size = new System.Drawing.Size(396, 39);
+            this.txtBoxMessage.Size = new System.Drawing.Size(340, 34);
             this.txtBoxMessage.TabIndex = 10;
             this.txtBoxMessage.TextChanged += txtBoxMessage_TextChanged;
             // 
-            // Form1
+            // SignalRClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.txtBoxMessage);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnSendMessage);
@@ -126,7 +126,7 @@ namespace SignalRClient
             this.Controls.Add(this.listBoxChat);
             this.Controls.Add(this.txtBoxUser);
             this.Controls.Add(this.lblUser);
-            this.Name = "Form1";
+            this.Name = "SignalRClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);

@@ -25,11 +25,6 @@ namespace SignalRClient
                 PersistentConnection.Received += ReceivedMessage;
                 PersistentConnection.Start().Wait();
 
-                //connection.On("Disconnect", () =>
-                //{
-                //    Invoke((MethodInvoker)delegate { Application.Exit(); });
-                //});
-
                 //connection.On("NickNameBusy", () =>
                 //{
                 //    Invoke((MethodInvoker)async delegate {
@@ -63,6 +58,7 @@ namespace SignalRClient
             {
                 Application.Exit();
             }
+            listBoxChat.BeginInvoke((MethodInvoker)(() => listBoxChat.Items.Add(message.Data)));
         }
 
         private void btnSendMessage_Click(object sender, EventArgs e)
